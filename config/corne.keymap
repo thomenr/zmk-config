@@ -1,0 +1,276 @@
+/*
+ * Corne 42-key ZMK keymap converted from 260923Corne.json (Vial/QMK)
+ *
+ * Four extra center keys from the source Vial board are intentionally omitted.
+ * RGB and mouse emulation are intentionally omitted.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    behaviors {
+        /*
+         * Recreates Vial TD(0):
+         *   single tap       -> Escape
+         *   single hold      -> Delete
+         *   double tap       -> nothing
+         *   tap, then hold   -> Left Alt
+         *   tapping term     -> 300 ms
+         *
+         * The tap-dance selects one of two nested hold-taps.
+         */
+        esc_del_ht: esc_delete_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <300>;
+            bindings = <&kp>, <&kp>;
+            display-name = "Esc / Delete";
+        };
+
+        alt_none_ht: alt_none_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <300>;
+            bindings = <&kp>, <&none>;
+            display-name = "Alt / None";
+        };
+
+        esc_td: escape_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&esc_del_ht DEL ESC>, <&alt_none_ht LALT 0>;
+            display-name = "Esc / Del / Alt";
+        };
+
+        np_pi: np_pi_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <15>;
+            tap-ms = <30>;
+            bindings = <&kp N &kp P &kp DOT &kp P &kp I>;
+            display-name = "np.pi";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        /* Base punctuation combos. Left-hand letter combos are also active on layer 5,
+         * where those physical positions still contain the same QWERTY letters. */
+        combo_df_lpar {
+            timeout-ms = <50>;
+            key-positions = <15 16>;
+            layers = <0 5>;
+            bindings = <&kp LPAR>;
+        };
+
+        combo_jk_rpar {
+            timeout-ms = <50>;
+            key-positions = <19 20>;
+            layers = <0>;
+            bindings = <&kp RPAR>;
+        };
+
+        combo_er_lbkt {
+            timeout-ms = <50>;
+            key-positions = <3 4>;
+            layers = <0 5>;
+            bindings = <&kp LBKT>;
+        };
+
+        combo_ui_rbkt {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            layers = <0>;
+            bindings = <&kp RBKT>;
+        };
+
+        combo_cv_lbrc {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            layers = <0 5>;
+            bindings = <&kp LBRC>;
+        };
+
+        combo_mcomma_rbrc {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            layers = <0>;
+            bindings = <&kp RBRC>;
+        };
+
+        combo_kl_minus {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            layers = <0>;
+            bindings = <&kp MINUS>;
+        };
+
+        combo_sd_under {
+            timeout-ms = <50>;
+            key-positions = <14 15>;
+            layers = <0 5>;
+            bindings = <&kp UNDER>;
+        };
+
+        combo_io_quote {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            layers = <0>;
+            bindings = <&kp SQT>;
+        };
+
+        combo_we_dquote {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            layers = <0 5>;
+            bindings = <&kp DQT>;
+        };
+
+        combo_xc_slash {
+            timeout-ms = <50>;
+            key-positions = <26 27>;
+            layers = <0 5>;
+            bindings = <&kp FSLH>;
+        };
+
+        combo_commadot_bslash {
+            timeout-ms = <50>;
+            key-positions = <32 33>;
+            layers = <0>;
+            bindings = <&kp BSLH>;
+        };
+
+        /* Number-layer combos (layer 1). */
+        combo_46_e {
+            timeout-ms = <50>;
+            key-positions = <19 21>;
+            layers = <1>;
+            bindings = <&kp E>;
+        };
+
+        combo_89_minus {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            layers = <1>;
+            bindings = <&kp MINUS>;
+        };
+
+        combo_78_caret {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            layers = <1>;
+            bindings = <&kp CARET>;
+        };
+
+        combo_45_equal {
+            timeout-ms = <50>;
+            key-positions = <19 20>;
+            layers = <1>;
+            bindings = <&kp EQUAL>;
+        };
+
+        combo_12_plus {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            layers = <1>;
+            bindings = <&kp PLUS>;
+        };
+
+        combo_56_kpast {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            layers = <1>;
+            bindings = <&kp KP_ASTERISK>;
+        };
+
+        combo_23_slash {
+            timeout-ms = <50>;
+            key-positions = <32 33>;
+            layers = <1>;
+            bindings = <&kp FSLH>;
+        };
+
+        combo_79_nppi {
+            timeout-ms = <50>;
+            key-positions = <7 9>;
+            layers = <1>;
+            bindings = <&np_pi>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+// -------------------------------------------------------------------------------------------------
+// | EscTD |   Q   |   W   |   E   |   R   |   T   |   |   Y   |   U   |   I   |   O   |   P   | BSPC |
+// | LShft |   A   |   S   |   D   |   F   |   G   |   |   H   |   J   |   K   |   L   |   ;   | RShft|
+// | LCtrl |   Z   |   X   |   C   |   V   |   B   |   |   N   |   M   |   ,   |   .   |   /   | Enter|
+//                         | MO(4) | MO(1) | Space |   | Enter | MO(2) | MO(3) |
+            bindings = <
+                &esc_td    &kp Q     &kp W     &kp E     &kp R     &kp T       &kp Y     &kp U     &kp I      &kp O     &kp P      &kp BSPC
+                &kp LSHFT  &kp A     &kp S     &kp D     &kp F     &kp G       &kp H     &kp J     &kp K      &kp L     &kp SEMI   &kp RSHFT
+                &kp LCTRL  &kp Z     &kp X     &kp C     &kp V     &kp B       &kp N     &kp M     &kp COMMA  &kp DOT   &kp FSLH   &kp RET
+                                      &mo 4     &mo 1     &kp SPACE             &kp RET   &mo 2     &mo 3
+            >;
+        };
+
+        symbols_layer {
+            display-name = "Symbols";
+            bindings = <
+                &kp ESC    &kp LC(FSLH) &kp CAPS   &kp LS(TAB) &kp TAB    &kp LG(E)      &kp CARET &kp N7    &kp N8     &kp N9    &kp MINUS  &kp BSPC
+                &kp LSHFT  &kp EXCL     &kp AT     &kp HASH    &kp DLLR   &kp PRCNT       &kp EQUAL &kp N4    &kp N5     &kp N6    &kp ASTRK  &kp COMMA
+                &kp LCTRL  &kp CARET    &kp AMPS   &kp ASTRK   &kp LPAR   &kp RPAR        &kp PLUS  &kp N1    &kp N2     &kp N3    &kp FSLH   &kp COLON
+                                           &kp LGUI &trans     &kp SPACE                  &kp RET   &kp N0    &kp DOT
+            >;
+        };
+
+        nav_edit_layer {
+            display-name = "Nav/Edit";
+            bindings = <
+                &kp ESC    &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)      &kp LC(A)       &none       &kp HOME    &kp UP      &kp END     &none       &kp BSPC
+                &kp LSHFT  &kp LC(FSLH)  &kp LC(D)     &kp LC(LEFT)  &kp LC(RIGHT)  &none           &none       &kp LEFT    &kp DOWN    &kp RIGHT   &none       &kp RSHFT
+                &kp LCTRL  &none         &kp LC(LS(L)) &kp LC(BSPC)  &kp LC(DEL)    &none           &none       &kp PG_UP   &kp PG_DN   &none       &none       &kp RET
+                                               &kp LGUI &kp LC(R)    &kp SPACE                    &kp RET     &trans      &kp RGUI
+            >;
+        };
+
+        system_layer {
+            display-name = "System";
+            bindings = <
+                &bootloader     &none       &none          &none        &none         &none          &none          &none       &none    &none    &none    &none
+                &studio_unlock  &kp PSCRN   &kp LA(PSCRN)  &kp C_VOL_DN &kp C_VOL_UP  &kp C_PP       &kp TILDE      &kp LA(X)   &np_pi  &none    &none    &none
+                &none           &none       &none          &none        &none         &none          &none          &none       &none    &none    &none    &none
+                                             &tog 5        &kp LGUI     &kp SPACE                    &kp RET       &none    &trans
+            >;
+        };
+
+        fn_layer {
+            display-name = "Fn";
+            /* Former mouse keys are intentionally &none. They can be reassigned in Studio. */
+            bindings = <
+                &trans     &kp F1      &kp F2      &kp F3      &kp F4      &kp F5        &trans       &none       &none       &none       &trans      &trans
+                &trans     &kp PSCRN   &kp DEL     &none       &kp F5      &trans        &trans       &none       &none       &none       &trans      &trans
+                &trans     &kp F7      &kp F8      &kp F9      &kp F10     &kp F11       &trans       &none       &none       &trans      &trans      &trans
+                                           &trans  &trans      &trans                     &kp LC(LA(DEL)) &trans  &trans
+            >;
+        };
+
+        numpad_layer {
+            display-name = "Numpad";
+            bindings = <
+                &kp ESC    &kp Q       &kp W       &kp E       &kp R       &kp T         &kp KP_NUMLOCK &kp KP_N7  &kp KP_N8  &kp KP_N9  &none       &kp BSPC
+                &kp LSHFT  &kp A       &kp S       &kp D       &kp F       &kp G         &kp SCROLLLOCK &kp KP_N4  &kp KP_N5  &kp KP_N6  &none       &kp DEL
+                &kp LCTRL  &kp Z       &kp X       &kp C       &kp V       &kp B         &none          &kp KP_N1  &kp KP_N2  &kp KP_N3  &none       &none
+                                           &trans  &kp LALT    &to 0                      &trans         &kp KP_N0  &kp KP_DOT
+            >;
+        };
+    };
+};
