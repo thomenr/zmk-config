@@ -223,7 +223,7 @@
         };
 
         symbols_layer {
-            display-name = "1_Number";
+            display-name = "NumSym";
             bindings = <
                 &kp ESC    &kp LC(FSLH) &kp CAPS   &kp LS(TAB) &kp TAB    &kp LG(E)      &kp CARET &kp N7    &kp N8     &kp N9    &kp MINUS  &kp BSPC
                 &kp LSHFT  &kp EXCL     &kp AT     &kp HASH    &kp DLLR   &kp PRCNT       &kp EQUAL &kp N4    &kp N5     &kp N6    &kp ASTRK  &kp COMMA
@@ -233,7 +233,7 @@
         };
 
         nav_edit_layer {
-            display-name = "2_NavEdit";
+            display-name = "NavEdit";
             bindings = <
                 &kp ESC    &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)      &kp LC(A)       &none       &kp HOME    &kp UP      &kp END     &none       &kp BSPC
                 &kp LSHFT  &kp LC(FSLH)  &kp LC(D)     &kp LC(LEFT)  &kp LC(RIGHT)  &none           &none       &kp LEFT    &kp DOWN    &kp RIGHT   &none       &kp RSHFT
@@ -243,9 +243,9 @@
         };
 
         system_layer {
-            display-name = "3_System";
+            display-name = "System";
             bindings = <
-                &bootloader     &none       &none          &none        &none         &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_SEL 5    &bt BT_CLR
+                &bootloader     &none       &none          &none        &none         &none          &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4   &bt BT_CLR
                 &studio_unlock  &kp PSCRN   &kp LA(PSCRN)  &kp C_VOL_DN &kp C_VOL_UP  &kp C_PP       &kp TILDE      &kp LA(X)   &np_pi  &none    &none    &none
                 &none           &none       &none          &none        &none         &none          &none          &none       &none    &none    &none    &none
                                              &tog 5        &kp LGUI     &kp SPACE                    &kp RET       &none    &trans
@@ -253,7 +253,7 @@
         };
 
         fn_layer {
-            display-name = "4_Func";
+            display-name = "Fn";
             /* Former mouse keys are intentionally &none. They can be reassigned in Studio. */
             bindings = <
                 &trans     &kp F1      &kp F2      &kp F3      &kp F4      &kp F5        &trans       &none       &none       &none       &trans      &trans
