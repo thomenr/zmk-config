@@ -208,7 +208,7 @@
         compatible = "zmk,keymap";
 
         base_layer {
-            display-name = "Base";
+            display-name = "Thomen";
 // -------------------------------------------------------------------------------------------------
 // | EscTD |   Q   |   W   |   E   |   R   |   T   |   |   Y   |   U   |   I   |   O   |   P   | BSPC |
 // | LShft |   A   |   S   |   D   |   F   |   G   |   |   H   |   J   |   K   |   L   |   ;   | RShft|
@@ -223,7 +223,7 @@
         };
 
         symbols_layer {
-            display-name = "Symbols";
+            display-name = "1_Number";
             bindings = <
                 &kp ESC    &kp LC(FSLH) &kp CAPS   &kp LS(TAB) &kp TAB    &kp LG(E)      &kp CARET &kp N7    &kp N8     &kp N9    &kp MINUS  &kp BSPC
                 &kp LSHFT  &kp EXCL     &kp AT     &kp HASH    &kp DLLR   &kp PRCNT       &kp EQUAL &kp N4    &kp N5     &kp N6    &kp ASTRK  &kp COMMA
@@ -233,7 +233,7 @@
         };
 
         nav_edit_layer {
-            display-name = "Nav/Edit";
+            display-name = "2_NavEdit";
             bindings = <
                 &kp ESC    &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)      &kp LC(A)       &none       &kp HOME    &kp UP      &kp END     &none       &kp BSPC
                 &kp LSHFT  &kp LC(FSLH)  &kp LC(D)     &kp LC(LEFT)  &kp LC(RIGHT)  &none           &none       &kp LEFT    &kp DOWN    &kp RIGHT   &none       &kp RSHFT
@@ -243,9 +243,9 @@
         };
 
         system_layer {
-            display-name = "System";
+            display-name = "3_System";
             bindings = <
-                &bootloader     &none       &none          &none        &none         &none          &none          &none       &none    &none    &none    &none
+                &bootloader     &none       &none          &none        &none         &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_SEL 5    &bt BT_CLR
                 &studio_unlock  &kp PSCRN   &kp LA(PSCRN)  &kp C_VOL_DN &kp C_VOL_UP  &kp C_PP       &kp TILDE      &kp LA(X)   &np_pi  &none    &none    &none
                 &none           &none       &none          &none        &none         &none          &none          &none       &none    &none    &none    &none
                                              &tog 5        &kp LGUI     &kp SPACE                    &kp RET       &none    &trans
@@ -253,18 +253,18 @@
         };
 
         fn_layer {
-            display-name = "Fn";
+            display-name = "4_Func";
             /* Former mouse keys are intentionally &none. They can be reassigned in Studio. */
             bindings = <
                 &trans     &kp F1      &kp F2      &kp F3      &kp F4      &kp F5        &trans       &none       &none       &none       &trans      &trans
-                &trans     &kp PSCRN   &kp DEL     &none       &kp F5      &trans        &trans       &none       &none       &none       &trans      &trans
+                &trans     &kp PSCRN   &kp LA(PSCRN)     &none       &kp F5      &trans        &trans       &none       &none       &none       &trans      &trans
                 &trans     &kp F7      &kp F8      &kp F9      &kp F10     &kp F11       &trans       &none       &none       &trans      &trans      &trans
                                            &trans  &trans      &trans                     &kp LC(LA(DEL)) &trans  &trans
             >;
         };
 
         numpad_layer {
-            display-name = "Numpad";
+            display-name = "5_Numpad";
             bindings = <
                 &kp ESC    &kp Q       &kp W       &kp E       &kp R       &kp T         &kp KP_NUMLOCK &kp KP_N7  &kp KP_N8  &kp KP_N9  &none       &kp BSPC
                 &kp LSHFT  &kp A       &kp S       &kp D       &kp F       &kp G         &kp SCROLLLOCK &kp KP_N4  &kp KP_N5  &kp KP_N6  &none       &kp DEL
